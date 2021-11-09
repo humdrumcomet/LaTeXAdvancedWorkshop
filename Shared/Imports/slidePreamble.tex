@@ -1,0 +1,85 @@
+\usepackage[mode=buildnew, subpreambles=false]{standalone}
+\usepackage{import}
+\usepackage{xurl}
+\usepackage{hyperref}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage[tbtags]{amsmath}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage{comment}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\usepackage{chemformula}
+\usepackage{catchfilebetweentags}
+\usepackage[style=ieee,backend=biber]{biblatex}
+\usepackage{csvsimple}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage[titletoc]{appendix}
+\usepackage{xpatch}
+\usepackage[debug, toc, section=section, acronym, symbols]{glossaries} % Glossaries package
+\usepackage[autoplay]{animate}
+
+\usepackage{tikz}
+    \usetikzlibrary{math, arrows, circuits.ee.IEC, positioning, shapes.arrows, shapes.geometric, external}
+\usepackage{pgfplots}
+    \pgfplotsset{compat=newest, compat/show suggested version=false}
+    \usepgfplotslibrary{groupplots}
+\usepackage[siunitx,american voltages, american currents, RPvoltages]{circuitikz}
+%Get rounded wire jumps
+\tikzset{
+    declare function={% in case of CVS which switches the arguments of atan2
+        atan3(\a,\b)=ifthenelse(atan2(0,1)==90, atan2(\a,\b), atan2(\b,\a));},
+        kinky cross radius/.initial=+.125cm,
+        @kinky cross/.initial=+, kinky crosses/.is choice,
+        kinky crosses/left/.style={@kinky cross=-},kinky crosses/right/.style={@kinky cross=+},
+        kinky cross/.style args={(#1)--(#2)}{
+        to path={
+          let \p{@kc@}=($(\tikztotarget)-(\tikztostart)$),
+              \n{@kc@}={atan3(\p{@kc@})+180} in
+          -- ($(intersection of \tikztostart--{\tikztotarget} and #1--#2)!%
+                 \pgfkeysvalueof{/tikz/kinky cross radius}!(\tikztostart)$)
+          arc [ radius     =\pgfkeysvalueof{/tikz/kinky cross radius},
+                start angle=\n{@kc@},
+                delta angle=\pgfkeysvalueof{/tikz/@kinky cross}180 ]
+          -- (\tikztotarget)}}
+      }
+%\usetikzlibrary{external}
+%\tikzexternalize[shell escape=-shell-escape]
+%\tikzset{external/system call={lualatex
+                                %\tikzexternalcheckshellescape -halt-on-error -interaction=batchmode 
+                                %-jobname "\image" "\texsource"}}
+%\usepackage{luatexbase}
+%\usepackage{luacode}
+
+% Package Configurations
+% SI unit pkg conf
+\sisetup{
+    load-configurations = abbreviations,
+    detect-family = true,
+    per-mode = reciprocal
+}%
+\DeclareSIUnit{\torr}{Torr}
+\DeclareSIUnit{\year}{yr}
+\DeclareSIUnit{\mtoe}{Mtoe}
+\DeclareSIUnit{\atm}{atm}
+
+% Bibliography .bib file locations should maybe be local?
+\addbibresource[location=local]{\sharedPath/bibFiles/accelerators.bib}
+
+% Other Configurations
+% Configuring caption font size
+\captionsetup[figure]{labelformat=empty}
+\captionsetup[subfigure]{font=scriptsize,labelfont=scriptsize}
+\captionsetup[sub]{font=scriptsize, labelfont=scriptsize, singlelinecheck=false}
+
+% Add Constants list using glossary
+\newglossary[cgls]{constants}{cstog}{cstig}{Constants}
+
+% A new command for less cramped nested fractions
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+% Alphabetize glossary and acronyms list
+\makeglossaries

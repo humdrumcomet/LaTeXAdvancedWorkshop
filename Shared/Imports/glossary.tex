@@ -1,0 +1,69 @@
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Acronym Only
+\newglossaryentry{ndfeb}
+{
+    type=\acronymtype,
+    name={NdFeB},
+    description={Neodymium Iron Boron Rare Earth Permanent Magnet},
+    first={Neodymium iron boron (NdFeB)}
+}
+\newglossaryentry{smco}
+{
+    type=\acronymtype,
+    name={SmCo},
+    description={Samarium Cobalt Rare Earth Permanent Magnet},
+    first={Samarium cobalt (SmCo)}
+}
+\newglossaryentry{cnc}
+{
+    type=\acronymtype,
+    name={CNC},
+    description={Computer Numerically Controlled},
+    first={Computer Numerically Controlled (CNC)}
+}
+\newglossaryentry{ptfe}
+{
+    type=\acronymtype,
+    name={PTFE},
+    description={Polytetraflouroethylene (PTFE), commonly referred to by the brand name Teflon, is a synthetic polymer with highly desirable electrical breakdown characteristics},
+    first={Polytetraflouroethylene (PTFE)}
+}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Glossary Only
+\newglossaryentry{cpp}
+{%
+    name={C++},
+    description={C++ is a programming language that can be used as an object oriented programming language, an imperative programming language, and still provide low-level memory control. Note: All C++ code used in this work is compiled under the C++11 standard}
+}
+\newglossaryentry{python}
+{%
+    name={Python},
+    description={Python is a flexible scripting language that can be used as an imperative language, an object oriented language. Note: All python code used in this work is written and executed using Python3.6}
+}
+\newglossaryentry{ibsimu}
+{%
+    name={IBSIMU},
+    description={IBSIMU is a \gls{cpp} library for ion optics, space-charge calculation, and plasma extraction. It is able to import 2-D and 3-D geometries as exported in .STL or .DXF file formats. It also allows for mathematical definition of geometries. Note: Version 1.0.6 of the IBSIMU library was used for this work \cite{acc:14}}
+}
+\newglossaryentry{ansys}
+{
+    name={ANSYS},
+    description={ANSYS Multiphysics is a software suite for multiphysics modelling and simulation}
+}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Glossary and Acronym
+\newglossaryentry{hvag}
+{%
+ name={HV},
+ description={High Vacuum (HV) is a term which refers to vacuum pressures in the range of \SI{1e-3}{\torr} to \SI{1e-8}{\torr}\cite{acc:13}}
+}
+\newglossaryentry{hva}
+{%
+ type=\acronymtype,
+ name={HV},
+ description={High Vacuum},
+ first={High Vacuum (HV)\glsadd{hvag}},
+ see=[Glossary:]{hvag}
+}

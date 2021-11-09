@@ -1,0 +1,143 @@
+\documentclass{amsart}
+%%% Animations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%<*n2BeamAnim>
+    \begin{figure}[htbp]
+        \begin{centering}
+            \animategraphics[controls, buttonsize=1.0em, width=\textwidth]{10}{\assetPath/Images/n2Beam/n2Beam-}{1}{240}
+            \caption{Video of \ch{N2} plasma and beam forming}
+            \label{fig:n2PlasBeamVid}
+        \end{centering}
+    \end{figure}
+%</n2BeamAnim>
+%<*lorenzAnimate>
+    \begin{figure}[htbp]
+        \begin{centering}
+            \includestandalone[width=0.85\textwidth]{\assetPath/Images/Tikz/lorenz/lorenzTikzAnim}
+            \caption{A tikz sketch}
+            \label{fig:animeLorenz}
+        \end{centering}
+    \end{figure}
+%</lorenzAnimate>
+%<*golAnimate>
+    \begin{figure}[htbp]
+        \begin{centering}
+            %\input{\assetPath/Images/Tikz/gol/gol.tikz}
+            % Currently there is an issue with tikzscale that prevents this from working with pgfplots next to eachother
+            \includestandalone[height=0.7\textheight]{\assetPath/Images/Tikz/gol/gol}
+            %\import{\assetPath/Images/Tikz/gol/}{gol.tikz}
+            %\includestandalone[width=\textwidth]{\assetPath/Images/Tikz/gol/gol}
+            \caption{Game of life running in lua and plotting in tikz}
+            \label{fig:animeGol}
+        \end{centering}
+    \end{figure}
+%</golAnimate>
+%<*golAnimatePres>
+    \begin{figure}[htbp]
+        \begin{centering}
+            %\input{\assetPath/Images/Tikz/gol/gol.tikz}
+            % Currently there is an issue with tikzscale that prevents this from working with pgfplots next to eachother
+            \includestandalone[height=0.7\textheight]{\assetPath/Images/Tikz/gol/gol}
+            %\import{\assetPath/Images/Tikz/gol/}{gol.tikz}
+            %\includestandalone[width=\textwidth]{\assetPath/Images/Tikz/gol/gol}
+            \caption{Game of life running in lua and plotting in tikz}
+            \label{fig:animeGol}
+        \end{centering}
+    \end{figure}
+%</golAnimatePres>
+
+%%% Image Series
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%<*processImgs>
+    \begin{figure}[htbp]
+        \begin{centering}
+            \begin{overlayarea}{\textwidth}{\textheight}
+                \only<1>{\includegraphics[width=\textwidth]{\assetPath/Images/NewChamberAssembly/beamLineNoCartView2Cropped.jpg}}%
+                \only<2>{\includegraphics[width=\textwidth]{\assetPath/Images/NewChamberAssembly/FullChambAssCrop.jpg}}%
+                \only<3>{\includegraphics[width=\textwidth]{\assetPath/Images/NewChamberAssembly/PIGCropped.jpg}}%
+                \only<4>{\includegraphics[width=\textwidth]{\assetPath/Images/IRLimages/manedPigPartsSmall.jpg}}%
+                \only<5>{\includegraphics[height=0.65\textheight]{\assetPath/Images/IRLimages/pigWithEinz.jpg}}%
+                \only<6>{\includegraphics[width=\textwidth]{\assetPath/Images/IRLimages/nitrogenPlasmaBeam.jpg}}%
+            \end{overlayarea}
+        \end{centering}
+    \end{figure}
+%</processImgs>
+
+%%% Tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%<*targsAndVals>
+    \begin{table}[H]
+        \centering
+        \caption{Table of specified parameters and achieved values (a green cell indicates a "Pass" and a red cell a "Fail")}
+        \begin{tabular}{c|c|c|c|c|c}
+            \bfseries \thead{Parameter\\($f_T\ 6.881\ GHz$)\\($f_{if}\ 200\ MHz$)} & \bfseries \thead{System\\Target} & \bfseries \thead{Theoretical\\Values\\(Mixer Only)} & \bfseries \thead{Initial\\Results\\(Mixer Only)} & \bfseries \thead{Initial\\Results\\System} & \bfseries \thead{Final\\System\\Design}
+            \csvreader[head to column names]{\assetPath/Data/TargetsAndVals.csv}{}
+            {\\\hline\csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi}
+        \end{tabular}
+        \label{tab:Parameters}
+    \end{table}
+%</targsAndVals>
+
+%%% Tikz Figures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%<*tikzplot>
+    \begin{figure}[htbp]
+        \begin{centering}
+            \includestandalone[width=0.75\textwidth]{\assetPath/Images/Tikz/plot/plot}
+            \caption{Lorenz Double Scroll Produced in LuaLatex}
+            \label{fig:plottikz}
+        \end{centering}
+    \end{figure}
+%</tikzplot>
+
+%<*tikzLorenz>
+    \begin{figure}[htbp]
+        \begin{centering}
+            \includestandalone[width=0.85\textwidth]{\assetPath/Images/Tikz/lorenz/lorenzTikz}
+            \caption{Lorenz Double Scroll Produced in LuaLatex}
+            \label{fig:lorScr}
+        \end{centering}
+    \end{figure}
+%</tikzLorenz>
+
+%<*tikzCircuit>
+    \begin{figure}[htbp]
+        \begin{centering}
+            \includestandalone[width=1\textwidth]{\assetPath/Images/Tikz/Circuits/circuit}
+            \caption{A Tikz Circuit Diagram}
+            \label{fig:circTikz}
+        \end{centering}
+    \end{figure}
+%</tikzCircuit>
+
+%<*tikzDiag>
+    \begin{figure}[htbp]
+        \begin{centering}
+            \includestandalone[width=\textwidth]{\assetPath/Images/Tikz/diagram/diag}
+            \caption{A tikz sketch}
+            \label{fig:diagTiks}
+        \end{centering}
+    \end{figure}
+%</tikzDiag>
+
+%%% Figures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%<*completedChamber>
+    \begin{figure}[tbph]
+        \begin{centering}
+            \includegraphics[width=0.9\textwidth]{\assetPath/Images/IRLimages/FullChambUpdate.JPG}
+            \caption{Completed vacuum chamber and pump, sealed for initial vacuum testing}
+            \label{fig:completedChamber}
+        \end{centering}
+    \end{figure}
+%</completedChamber>
+%<*mountPIGEinz>
+    \begin{figure}[tbph]
+        \begin{centering}
+            \includegraphics[width=\textwidth]{\assetPath/Images/IRLimages/mountedPigWithEinz.jpg}
+            \caption{Mounted, electrically connected, and gas connected \gls{pig} with Einzel lens}
+            \label{fig:mountPIGEinz}
+        \end{centering}
+    \end{figure}%
+%</mountPIGEinz>

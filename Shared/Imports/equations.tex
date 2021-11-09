@@ -1,0 +1,44 @@
+\documentclass{amsart}
+%%% Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%<*lorenzAttr>
+    \begin{align}
+        \frac{\text{d}x}{\text{d}t} &= \gls{sig}(y-x)\\
+        \frac{\text{d}y}{\text{d}t} &= x(\gls{rho} -z)-y\\
+        \frac{\text{d}z}{\text{d}t} &= xy-\gls{beta} z\\
+    \end{align}
+%</lorenzAttr>
+
+%<*nucBinEner>
+    \begin{equation}
+        \gls{EB}(Z,N)=\alpha_{1}\gls{A}-\alpha_{2}\gls{A}^{2/3}-\alpha_{3}\frac{\gls{Z}(\gls{Z}-1)}{\gls{A}^{1/3}}-\alpha_{4}\frac{(\gls{N}-\gls{Z})^2}{\gls{A}}+\gls{delt}
+        \label{eqt:nucBinEner}
+    \end{equation}
+%</nucBinEner>
+%<*pairEnParam>
+    \begin{equation}
+        \gls{delt} = \left\{
+            \begin{array}{@{}ll@{}}
+                \delta, & \text{for \gls{A} and \gls{N} both even}\\
+                0, & \text{for \gls{A} $+$ \gls{N} odd}\\
+                -\delta, & \text{for \gls{A} and \gls{N} both odd}
+            \end{array}\right.
+        \label{eqt:piarEnParam}
+    \end{equation}
+%</pairEnParam>
+%<*nucReacExamp>
+    \begin{equation}
+        \ch{
+            ^{2}H + ^{2}H -> ^{3}He + n^{0}
+        }
+        \label{eqt:nucReacExamp}
+    \end{equation}
+%</nucReacExamp>
+%<*nucEnerReleased>
+    \begin{align}
+        \gls{deltEb} & \equiv \sum{\gls{ED}(Reactants)} - \sum{\gls{ED}(Products)} \label{eqt:nucEnerReleased}\\
+        \gls{deltEb} & = (\gls{ED}(\ch{^{2}H}) + \gls{ED}(\ch{^{2}H})) - (\gls{ED}(\ch{^{3}He}) + \gls{ED}(\ch{n^0})) \nonumber\\
+        \gls{deltEb} & = (13.135\si{\mega\electronvolt} + 13.135\si{\mega\electronvolt}) - (14.931\si{\mega\electronvolt} + 8.071\si{\mega\electronvolt}) \nonumber \\
+        \gls{deltEb} & = 3.27\si{\mega\electronvolt} \nonumber
+    \end{align}
+%</nucEnerReleased>

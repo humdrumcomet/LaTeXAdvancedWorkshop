@@ -1,0 +1,11 @@
+            Parameter,              Target,            TheoVal,                   SimMixVal
+           $NF_{dsb}$,             $\leq4$,            $11.17$,                      $5.95$
+               $IIP3$,          $\geq -22$,       $\geq -2.73$,                     $-4.98$
+  $1\ dB$ Compression,          $\geq -32$,      $\geq -12.73$,                     $-14.2$
+                 Gain,           $\geq 16$,       $\geq -3.26$,                     $-4.58$
+           $I_{bias}$,                   -,                  -,                           -
+            $I_{buf}$,                   -,                  -,                           -
+            $I_{ref}$,                   -,                $1$,                         $1$
+                $R_D$,  $\leq 10$,      $570$,               $600$
+             $V_{lo}$,            $\leq 1$,                  -,                           -
+             $V_{rf}$,            $\leq 1$,                  -,                           -

@@ -1,0 +1,66 @@
+% arara: lualatex: { shell: true}
+% arara: lualatex: { shell: true}
+
+\providecommand{\importPath}{../../../../Shared/Imports}
+\providecommand{\assetPath}{../../../../Assets}
+\providecommand{\codePath}{../../../../Shared/LuaCalcs}
+\providecommand{\sharedPath}{../../../../Shared}
+\providecommand{\plotCodePath}{../../../../Assets}
+
+\documentclass[tikz, crop=false, export]{standalone}
+
+\input{\codePath/luaDatSetup}
+\input{\importPath/docPreamble}
+\input{\importPath/glossary}
+\input{\importPath/symbols}
+
+\begin{document}
+    \directlua{
+        path = "\plotCodePath"
+        gol = require(path.."/Code/gol")
+    }
+    \newcommand\addLuaGol[4][]{%
+        \directlua{
+            #4 = gol.golRun(#2,#3,#4,[[#1]])
+        }%
+    }
+    \newcommand\countLuaGol[6][]{%
+        \directlua{
+            #2 = gol.golTot(#2,#3,#4,#5,#6,[[#1]])
+        }%
+    }
+    \begin{animateinline}[poster=last, controls, buttonsize=1.0em]{12}
+        \multiframe{100}{iTer=0+1}{
+            \begin{tikzpicture}
+                \begin{groupplot}[
+                    group style={
+                        group size =1 by 2,
+                        vertical sep=1.8cm,
+                    }
+                ]
+                \nextgroupplot[grid=both,
+                    colormap/blackwhite,
+                    xmax=40,
+                    xmin=0,
+                    ymin=0,
+                    ymax=40,
+                    width=10cm,
+                    height=10cm,
+                    xlabel=$X$,
+                    ylabel=$Y$,]
+                    \addLuaGol{41}{41}{mat};
+                \nextgroupplot[grid=both,
+                    width=10cm,
+                    height=4cm,
+                    xmin=0,
+                    xmax=100,
+                    ymin=600, 
+                    ymax=750,
+                    xlabel=\gls{time},
+                    ylabel=\gls{pop},]
+                    \countLuaGol[mark=*, mark size=0.8, blue]{count}{mat}{40}{40}{\iTer};
+                \end{groupplot}
+            \end{tikzpicture}
+        }
+    \end{animateinline}
+\end{document}

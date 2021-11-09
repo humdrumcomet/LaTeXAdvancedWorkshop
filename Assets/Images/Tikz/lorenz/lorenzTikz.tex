@@ -1,0 +1,38 @@
+% arara: lualatex: { shell: true}
+% arara: lualatex: { shell: true}
+
+\providecommand{\importPath}{../../../../Shared/Imports}
+\providecommand{\assetPath}{../../../../Assets}
+\providecommand{\codePath}{../../../../Shared/LuaCalcs}
+\providecommand{\sharedPath}{../../../../Shared}
+\providecommand{\plotCodePath}{../../..}
+
+\documentclass[tikz, hidelinks, float=false, crop=false]{standalone}
+
+\input{\codePath/luaDatSetup}
+\input{\importPath/docPreamble}
+\input{\importPath/glossary}
+\input{\importPath/symbols}
+
+\begin{document}
+    \directlua{
+        path = "\plotCodePath"
+        lorenz = require(path.."/Code/lorenz")
+    }
+    \newcommand\addLUADEDplot[5][]{%
+        \directlua{lorenz.LorenzAttractor(#2,#3,[[#1]])}%
+    }
+    \begin{tikzpicture}
+        \begin{axis}[grid=both,
+            xlabel=$X$,
+            ylabel=$Y$,
+            zlabel=$Z$,]
+            \addLUADEDplot[color=red,smooth]{0.02}{1000};%{\iTer}{red1};
+            \addLUADEDplot[color=green,smooth]{0.02}{1000};%{\iTer}{green1};
+            \addLUADEDplot[color=blue,smooth]{0.02}{1000};%{\iTer}{blue1};
+            \addLUADEDplot[color=cyan,smooth]{0.02}{1000};%{\iTer}{cyan1};
+            \addLUADEDplot[color=magenta,smooth]{0.02}{1000};%{\iTer}{magenta1};
+            \addLUADEDplot[color=yellow,smooth]{0.02}{1000};%{\iTer}{yellow1};
+        \end{axis}
+    \end{tikzpicture}
+\end{document}
