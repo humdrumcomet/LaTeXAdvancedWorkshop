@@ -20,8 +20,8 @@
 \date{March $20^{\text{st}}  2021$}
 \author{Aaron English}
 
-% Beamer theme files
-\usetheme{carletonUniversity}
+%% Beamer theme files
+%\usetheme{carletonUniversity}
 
 \begin{document}
     \begin{frame}[noframenumbering, plain]
@@ -161,39 +161,6 @@
                 \end{centering}
             \end{figure}
         \end{frame}
-        %\begin{frame}
-            %\frametitle{Circuit TikZ}
-            %\begin{figure}[htbp]
-                %\begin{centering}
-                    %\begin{circuitikz}[voltage shift=0.5, scale=0.6]
-                        %\draw (0, 0) node[nigbt,](Q1){};
-                        %\draw (Q1.E) -- ++(0, -2) node[nigbt,anchor=C](Q2){};
-                        %\draw (Q2.E) -- ++(0,-1) -- ++(-3,0) node[shape=ground]{} to[V,l=\gls{vin}] ++(0,7) --
-                                %++(3, 0) coordinate(int1) to[short] (Q1.C);
-
-                        %\draw (Q1.C) ++(2, 0) node[nigbt,anchor=C](Q3){};
-                        %\draw (Q3.E) -- ++(0, -2) node[nigbt,anchor=C](Q4){};
-                        %\draw (Q4.E) -- ++(0,-1) -- ++(-2,0) node[circ]{};
-                        %\draw (int1) node[circ]{} -- ++(2,0) -- (Q3.C);
-
-                        %\draw (Q1.E) node[circ]{} to[kinky cross=(Q3.E)--(Q4.C)] ++(3,0) coordinate(Trans1);
-
-                        %\draw (Trans1) node[transformer core, anchor=A1, circuitikz/inductors/coils=6](T){}
-                                %(T.base) node[above]{$N_{1}:N_{2}$};
-                        %\draw (T.A2) -- ++(-1,0) node[circ]{};
-                        
-                        %\draw (T.B1) to[D,] ++(2,0) coordinate(vout) node[circ]{} -- ++(1.5,0)
-                        %node[circ]{} coordinate(cout) -- ++(1,0)coordinate (rout) to[R=,v^=\gls{vout}] 
-                                %(rout |- T.B2) -- ++(-1,0) coordinate(end) node[circ]{} to [C,] (cout);
-                        %\draw (T-L2.midtap) to[short] ++(3,0) coordinate(mid) -- (mid |- T.B2) -- (end);
-                        %\draw (T.B2) to[D,] ++(2,0) to[kinky cross=(T-L2.midtap)--(mid)] (vout);
-                    %\end{circuitikz}
-                    %\caption{An Example of a circuit (an isolated boost converter) done in circuit TikZ}
-                    %\label{fig:circuitTikZ}
-                %\end{centering}
-            %\end{figure}
-        %\end{frame}
-
     
     \section{Next Steps}\label{sct:allRes}
         \begin{frame}
@@ -203,17 +170,13 @@
             \frametitle{Double Scroll}
             \ExecuteMetaData[\importPath/assets.tex]{tikzLorenz}
         \end{frame}
-        %\begin{frame}
-            %\frametitle{\ch{N2} Plasma and Beam}
-            %\ExecuteMetaData[\importPath/assets.tex]{n2BeamAnim}
-        %\end{frame}
-        %\begin{frame}
-            %\frametitle{Animate the Double Scroll}
-            %\ExecuteMetaData[\importPath/assets.tex]{lorenzAnimate}
-        %\end{frame}
-        %\begin{frame}
-            %\frametitle{How About Game of Life?}
-            %\ExecuteMetaData[\importPath/assets.tex]{golAnimate}
-        %\end{frame}
+        \begin{frame}
+            \frametitle{Animate the Double Scroll}
+            \ExecuteMetaData[\importPath/assets.tex]{lorenzAnimate}
+        \end{frame}
+        \begin{frame}
+            \frametitle{How About Game of Life?}
+            \ExecuteMetaData[\importPath/assets.tex]{golAnimate}
+        \end{frame}
 
 \end{document}
