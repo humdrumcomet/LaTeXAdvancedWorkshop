@@ -330,18 +330,18 @@
         "first time fill version" rule for acronyms.
 
         Lets start with a simple example. Here I've defined a glossary term for \gls{cpp}. Not 
-        too fancy, but this now is a link the glossary, where the confused reader can go for more
+        too fancy, but this now is a link to the glossary, where the confused reader can go for more
         information. As a bonus, once you've defined your glossary term, if you decide it should look 
         different, you only need to change it in one place, and your changes propagate through the
         whole document.
         
-        Now lets get a little fancier. How about an acronym, something like \gls{cnc}. The first time
+        Now let's get a little fancier. How about an acronym, something like \gls{cnc}. The first time
         I mention it, it shows up as the full name. The second time I mention \gls{cnc}, only the 
-        acronym shows up! Of course it doesn't matter if order changes, \LaTeX~will always get it 
+        acronym shows up! Of course it doesn't matter if the order changes, \LaTeX~will always get it 
         right (almost, watch out for using it in titles). This can also be combined with a glossary,
         for the instances where you're trying to expand on the acronym. So say for example I'm talking
         about \gls{hva}. The acronym for \gls{hva} is just simply expanded to \glsdesc{hva},
-        so then how do I can add a glossary term and have the two linked, giving me greater expandability.
+        so then now I can add a glossary term and have the two linked, giving me greater expandability.
 
         Now I know not everyone is in need of glossaries for the projects or reports but I assure you
         this package is worth it for more reasons than just the acronyms and the glossaries, because
@@ -359,8 +359,8 @@
         
 
     \section{Vector and Raster Graphics}
-        Did you ever notice that when you zoom in on the letters in a PDF file, the never pixelate
-        but this is not true of your graphics when you add them to your documents? Well this has
+        Did you ever notice that when you zoom in on the letters in a PDF file, they never pixelate?
+        But this is not true of your graphics when you add them to your documents? Well this has
         to do with the difference between vector and raster graphics. 
 
         Roughly speaking vector graphics are equation based. They are graphics defined by points 
@@ -377,7 +377,7 @@
 
         \subsection{TikZ}
             TikZ is extremely powerful. It can create anything you want to display, but it does have
-            a bit of a learning curve. First lets talk about what you could accomplish with it.
+            a bit of a learning curve. First let's talk about what you could accomplish with it.
 
             One fantastic aspect of TikZ is that it integrates seamlessly with the rest of your
             document. The same fonts, the same symbols, and even, clean integration with glossaries
@@ -451,13 +451,13 @@
                             \draw (5,0.5)--(5,0);
                             \draw[->] (0.3,3.3)--(2,4.5)node[right]{$\gls{temp}_{increasing}$};
                         \end{tikzpicture}
-                    \caption{A TikZ Diagram showing an sketch of the Fermi-Dirac distribution}
+                    \caption{A TikZ Diagram showing a sketch of the Fermi-Dirac distribution}
                     \label{fig:tikzFDDist}
                 \end{centering}
             \end{figure}
             
         \subsection{Pgfplots}
-            great plots consistent visuals, not too hard to implement.
+            Great plots, consistent visuals, not too hard to implement.
             \begin{figure}[htbp]
                 \begin{centering}
                     \begin{tikzpicture}
