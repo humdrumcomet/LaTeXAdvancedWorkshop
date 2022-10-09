@@ -3,14 +3,29 @@
 Welcome to the advanced LaTeX workshop. 
 This time around the presentation will be a more straightforward introduction to some of LaTeX's coolest abilities and packages. 
 
-As in the previous workshop (available [here](https://github.com/humdrumcomet/LaTeXCodingSession)) all the code used to prepare the document and the presentation are available in this github repo.
-
-
-To return to the previous workshop, click [here](https://github.com/humdrumcomet/LaTeXCodingSession).\
-To return to the top level directory of the tutorials, click [here](https://github.com/humdrumcomet/LaTeXTutorialSeries).\
+As in the previous workshop, all the code used to prepare the document and the presentation are available in this github repo.
 
 Note: To use the Carleton-Beamer Theme you must gather the necessary files from the github repo for it [here](https://github.com/humdrumcomet/CUBeamer).
 Instructions for how to use the beamer theme are on the github readme page.
+
+## Workshop Series Map
+
+0. [LaTeX Workshops and Tutorial Series](https://github.com/humdrumcomet/LaTeXTutorialSeries)  
+   Top level page for the workshop series
+1. [What is LaTeX?](https://github.com/humdrumcomet/LaTeXIntroduction)  
+    An introduction to the typesetting tool
+    - [Let's Code It!](https://github.com/humdrumcomet/LaTeXCodingSession)  
+      A starting point for you to prepare your first document during the live coding session
+2. [Some More Advanced Packages](https://github.com/humdrumcomet/LaTeXAdvancedWorkshop) <sup>(you are here)</sup>  
+   introduction to different ways of thinking about document preparation and some of LaTeX's more sophisticated tools
+    - [Presentations in LaTeX](https://github.com/humdrumcomet/LaTeXAdvancedWorkshop-Beamer)  
+      An introduction to, and demonstration of, a presentation slide deck prepared with LaTeX using the beamer document class
+    - [Additional Concepts Demo](https://github.com/humdrumcomet/LaTeXAdvancedWorkshop-Extras)  
+      A quick taste of where else you could take some of these ideas
+    - [Course Specific Material](https://github.com/humdrumcomet/LaTeXAdvancedWorkshop-Course-Specific)  
+      Some useful course specific material for ELEC
+3. [LaTeX in Different Environments]()  
+4. [Fully Reproducible Documents, Literate Programming, and Experimental LaTeX]()  
 
 ## Overview and Usage
 This repo has 2 parts, a report and a slide deck.
