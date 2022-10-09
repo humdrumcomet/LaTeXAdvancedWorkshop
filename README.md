@@ -1,8 +1,19 @@
 # LaTeX Advanced Workshop
 
-## Introduction
-Welcom to an introduction to some of (in my opinion) LaTeX's coolest abilities.
+Welcome to the advanced LaTeX workshop. 
+This time around the presentation will be a more straightforward introduction to some of LaTeX's coolest abilities and packages. 
 
+As in the previous workshop (available [here](https://github.com/humdrumcomet/LaTeXCodingSession)) all the code used to prepare the document and the presentation are available in this github repo.
+
+
+To return to the previous workshop, click [here](https://github.com/humdrumcomet/LaTeXCodingSession).\
+To return to the top level directory of the tutorials, click [here](https://github.com/humdrumcomet/LaTeXTutorialSeries).\
+
+Note: To use the Carleton-Beamer Theme you must gather the necessary files from the github repo for it [here](https://github.com/humdrumcomet/CUBeamer).
+Instructions for how to use the beamer theme are on the github readme page.
+
+## Overview and Usage
+This repo has 2 parts, a report and a slide deck.
 Each `.tex` file will compile as standalones (the tikz images, the subfiles, and the
 beamer presentation), but all (but the report) share the same preambles, glossary list, 
 symbols list, acronyms, etc. using the packages `standalone` and `externalize`. The reason for this
@@ -14,8 +25,6 @@ chek that they are working correctly
 
 Its also setup to be nothing but relative paths, so that if you're synchronizing a folder across
 multiple devices, this won't create an issue.
-
-## Information on Code
 
 ### Requirements
 #### Main
@@ -32,3 +41,9 @@ it makes use of figures and assets not distributed with the repo. It is left as 
 #### Compilation
 The code included in this repo makes use of the LaTeX compilation tool [ARARA](https://github.com/islandoftex/arara)
 but should compile without issue using latexmk, or other compilation tools.
+
+## Authors and Organizers
+
+* Ghassan Arnouk
+* Alec Bales D'Cruze
+* Aaron English

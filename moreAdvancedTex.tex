@@ -1,33 +1,37 @@
-% arara: lualatex
+% arara: pdflatex: { shell: yes }
 % arara: makeglossaries
-% arara: lualatex
 % arara: biber
-% arara: lualatex
-% arara: lualatex
+% arara: pdflatex: { shell: yes }
+% arara: pdflatex: { shell: yes }
 
 % Demo report and presentation prepared by Aaron English (humdrumcomet on github)
 \documentclass[hidelinks, float=false, crop=false]{article}
 
-\usepackage{import}
-\usepackage{indentfirst}
-\usepackage[doublespacing]{setspace}
-\usepackage{xurl}
-\usepackage{hyperref}
-\usepackage[tbtags]{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{fancyhdr}
-\usepackage[T1]{fontenc}
-\usepackage{xparse}
-\usepackage{xcolor}
-\usepackage{colortbl}
-\usepackage{siunitx}
-\usepackage{chemformula}
-\usepackage[style=ieee,backend=biber]{biblatex}
-\usepackage{float}
-\usepackage{enumitem}
-\usepackage{graphicx}
+\usepackage{geometry} % useful for defining page geometries
+\usepackage{hyperref} % used for creating hyperlinks in documents. Both to the web and within the document itself
+\usepackage[tbtags]{amsmath} % for typesetting math (American Mathematical Society)
+\usepackage{amsfonts} % fonts and mathematical symbols
+\usepackage{amssymb} % more mathematical symbols
+\usepackage[utf8]{inputenc} % how to treat the written file (as utf8)
+\usepackage[T1]{fontenc} % the encoding for the output file T1 is the most common, includes accents and many other commonly needed/used characters
+\usepackage[style=ieee,backend=biber]{biblatex} % for handling bibliographies
+\usepackage{float} % added control over
+\usepackage{graphicx} % tools for inclusion of graphics
+\usepackage{booktabs} % adding commands to improve the look of tables
+\usepackage{csvsimple} % simplify table creation by importing .csv files directly
+\usepackage{siunitx} % consistent notation and correct formatting of units
+\DeclareSIUnit{\torr}{Torr} % Custom unit definition
+\usepackage{minted} % inclusion of code blocks with syntax highlighting and
+\setminted{linenos, autogobble, fontsize=\footnotesize, breaklines=true} % set global options for minted environments
+\usepackage{chemformula} % for writing chemical formulae
+\usepackage[useregional]{datetime2}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% New packages introduced in this talk
+\usepackage{standalone}
+\usepackage{import}
+\usepackage{catchfilebetweentags}
+\usepackage[debug, toc, section=section, acronym, symbols]{glossaries} % Glossaries package
 \usepackage{tikz}
     \usetikzlibrary{math, arrows, circuits.ee.IEC, positioning, shapes.arrows, shapes.geometric, external}
 \usepackage{pgfplots}
@@ -35,9 +39,8 @@
     \usepgfplotslibrary{groupplots}
 \usepackage[siunitx,american voltages, american currents, RPvoltages]{circuitikz}
 
-\usepackage[titles]{tocloft}
-\usepackage{xpatch}
-\usepackage[debug, toc, section=section, acronym, symbols]{glossaries} % Glossaries package
+% A command for less cramped nested fractions
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 
 %Get rounded wire jumps
 \tikzset{
@@ -58,25 +61,6 @@
           -- (\tikztotarget)}}
       }
 
-% A new command for less cramped nested fractions
-\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
-% Front matter, main matter, and back matter definitions
-\def\frontmatter{%
- \pagenumbering{roman}
- \setcounter{page}{1}
- \renewcommand{\thesection}{\roman{section}}
-}%
-\def\mainmatter{%
- \pagenumbering{arabic}
- \setcounter{page}{1}
- \setcounter{section}{0}
- \renewcommand{\thesection}{\arabic{section}}
-}%
-\def\backmatter{%
- \setcounter{section}{0}
- \renewcommand{\thesection}{\alph{section}}
-}%
-
 % SI unit pkg conf
 \sisetup{
     load-configurations = abbreviations,
@@ -88,12 +72,6 @@
 % Bibliography .bib file locations should maybe be local?
 \addbibresource[location=local]{./accelerators.bib}
 
-% Fancyhdr modification of page numbering
-\pagestyle{fancy}
-\fancyhf{}
-\fancyfoot[R]{\thepage}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{1pt}
 % Add Constants list using glossary
 \newglossary[cgls]{constants}{cstog}{cstig}{Constants}
 % Alphabetize glossary and acronyms list
@@ -194,6 +172,12 @@
     name={\ensuremath{E_{G}}},
     description={Bandgap}
 }
+\newglossaryentry{temp}
+{
+    type=symbols,
+    name={\ensuremath{T}},
+    description={Temperature (\si{\kelvin})}
+}
 \newglossaryentry{rd}
 {
     type=symbols,
@@ -211,12 +195,6 @@
     type=symbols,
     name={\ensuremath{V_{in}}},
     description={Input voltage}
-}
-\newglossaryentry{temp}
-{
-    type=symbols,
-    name={\ensuremath{T}},
-    description={Temperature in units of Kelvin}
 }
 
 %%%%%%%%%%%%%%%%%%%
@@ -295,14 +273,18 @@
         {\fontsize{30}{50}\selectfont {\bfseries Hello Again \LaTeX\\}}
         \vspace{3cm}
         {\LARGE More Capabilities of the\\
-        Typesetting Tool\\}
-        \vspace{7cm}
+            Typesetting Tool\\}
+        \vspace{8cm}
     \end{center}
-    \begin{raggedleft}
-        {\Large Aaron English\\
-            Date: \today\\}
-    \end{raggedleft}
+    \begin{flushright}
+        Authors and Organizers:\\
+        Ghassan Arnouk\\
+        Alec Bales D'Cruze\\
+        Aaron English\\
+        \DTMdisplaydate{2022}{10}{11}\\
+    \end{flushright}
     \thispagestyle{empty}
+
 
     \clearpage
     \tableofcontents
@@ -317,8 +299,16 @@
         conversation had an implicit basis in Word's abilities and usage. 
 
         So this time, let's try a different approach. If our typesetting tool (this is actually what
-        \LaTeX~is) has a complete programming language underneath how many things can we automate?
-        Described as one of the most sophisticated typesetting programs in existence.
+        \LaTeX~is) is itself a complete programming language, so how many things can we automate?
+
+    \section{Importing Subcomponents}
+        When you're working in overleaf its a little more difficult to take advantage of importing abilities in \LaTeX.
+        For now, I will just introduce these packages, and we'll discuss them at the next presentation.
+        \begin{itemize}
+            \item import
+            \item standalone
+            \item catchfilebetweentags
+        \end{itemize}
 
     \section{The Glossaries Package}
         In \LaTeX~there are a handful of packages that are \textbf{\textit{BIG}}. One such example
@@ -350,11 +340,11 @@
         Lets take an example and write out the equation for the Fermi-Dirac distribution, Equation \ref{eqt:fermiDirac}.
 
         \begin{equation}
-            \gls{fermiDist} = \left(e^{\left(\ddfrac{\gls{ener}-\gls{efermi}}{\gls{boltz}\gls{temp}}\right)}+1\right)^{-1}
+            \gls{fermiDist} = \left(e^{\left(\frac{\gls{ener}-\gls{efermi}}{\gls{boltz}\gls{temp}}\right)}+1\right)^{-1}
             \label{eqt:fermiDirac}
         \end{equation}
 
-        As you can see, we know can enforce consistent notation, and if later on we decide we'd like 
+        As you can see, we now can enforce consistent notation, and if later on we decide we'd like
         to change the notation, we only have to go to one place.
         
 
