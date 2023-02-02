@@ -34,7 +34,8 @@
 \usepackage{pgfplots}
     \pgfplotsset{compat=newest, compat/show suggested version=false}
     \usepgfplotslibrary{groupplots}
-\usepackage[siunitx,american voltages, american currents, RPvoltages]{circuitikz}
+    \usepackage[siunitx,american voltages, american currents, RPvoltages]{circuitikz}
+    \usepackage{forest}
 
 % A command for less cramped nested fractions
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
@@ -286,6 +287,12 @@
     \clearpage
     \tableofcontents
     \clearpage
+
+
+
+
+
+
     \section{Where Did We Leave Off?}
         Last time we talked about how \LaTeX~makes things easier for you in a number of ways, and 
         how it has many tools and packages to simplify things like page numbering, section numbering,
@@ -334,7 +341,203 @@
 
         As you can see, we now can enforce consistent notation, and if later on we decide we'd like
         to change the notation, we only have to go to one place.
-        
+
+    \section{Modularizing your Documents}
+        A running theme through many of these presentation has been the idea of reuseable code.
+        The idea being that once you code something up in a way that you like, say for example your preamble, you can reuse it the next time you're writing a report.
+        But this is code, so we want to simplify this as much as possible.
+        In fact, we don't ever want to copy and paste, we want it to be set up so that if something goes wrong and we fix some issue that fix propagates out everywhere.
+        So how do we do that?
+        \LaTeX~has a variety of commands and packages that facilitate this sort of thing at different levels as we explore these, keep in mind a couple of different ideas:
+        \begin{itemize}
+            \item Reusing material from your report in your presentation
+            \item Modularizing documents; especially big documents
+            \item Reusing general code
+        \end{itemize}
+    \section{A (very) Brief Pathing Primer}
+        When setting up a modular document, often times its desireable to have it use relative paths \mintinline{bash}{../../your-file.tex} instead of absolute ones \mintinline{bash}{/home/your-user-name/your/path/to/file.tex}.
+        Figure \ref{fig:directoryStructure} shows a sample of the directory for this report.
+    \begin{figure}[htbp]
+    \begin{forest}
+        for tree={
+        %     font=\sffamily,
+        %     text=white,
+        %     text width=2cm,
+        %     minimum height=0.75cm,
+        %     if level=0
+        %     {fill=violet}
+        %     {fill=blue},
+        %     rounded corners=4pt,
+            grow'=0,
+            child anchor=west,
+            parent anchor=south,
+            anchor=west,
+            calign=first,
+            edge={rounded corners,line width=1pt},
+            edge path={
+            \noexpand\path [draw, \forestoption{edge}]
+            (!u.south west) +(7.5pt,0) |- (.child anchor)\forestoption{edge label};
+            },
+            before typesetting nodes={
+            if n=1
+                {insert before={[,phantom]}}
+                {}
+            },
+            fit=band,
+            % s sep=10pt,
+            before computing xy={l=15pt},
+        }
+        % \addLuaDirectoryTree{\toplevel}
+        [Report Directory
+            [Assets
+                [Images
+                    [Tikz
+                        [texfamilytree
+                            [texfamilytree.pdf]
+                            [texfamilytree.tex]
+                        ]
+                        [...]
+                        % [directoryStructure
+                        %     [directorystructure.tex]
+                        % ]
+                        % [lorenz
+                        %     [lorenzTikz.pdf]
+                        %     [lorenzTikz.tex]
+                        % ]
+                        % [mosfet
+                        %     [mosfet.tex]
+                        % ]
+                        % [plot
+                        %     [plot.tex]
+                        % ]
+                        % [pnjunction
+                        %     [pnjunction.tex]
+                        % ]
+                        % [IsolatedDCDCConverter
+                        %     [isolatedDCDC.tex]
+                        % ]
+                    ]
+                ]
+                [...]
+                % [Code
+                %     [lorenz.lua]
+                %     [...]
+                %     % [directoryWalker.lua]
+                % ]
+                % [Data
+                %     [TargetsAndVals.csv]
+                %     [VacuumTech.csv]
+                % ]
+            ]
+            [Presentation
+                [modularPresentation.pdf]
+                [modularPresentation.tex]
+            ]
+            [ReportChapters
+                [001-ch1
+                    [chapt1.pdf]
+                    [chapt1.tex]
+                ]
+                [...]
+                % [002-ch2
+                %     [chapt2.tex]
+                % ]
+            ]
+            [Shared
+                [Imports
+                    [preamble.tex]
+                    [glossary.tex]
+                    [...]
+                    % [assets.tex]
+                    % [equations.tex]
+                    % [symbols.tex]
+                ]
+                [...]
+                % [bibFiles
+                %     [accelerators.bib]
+                % ]
+            ]
+            [modularReport.pdf]
+            [modularReport.tex]
+        ]
+    \end{forest}
+        \caption{The directory structure for this report (as an example of a modular structure)}
+        \label{fig:directoryStructure}
+    \end{figure}
+    \section{Handling Paths Yourself}
+        My preferred solution to the pathing issue is to define some variables and simply define the relative distance to the top level in each file independently.
+        This way, no matter which file or subfile I'm using, the correct path is being followed, and only one variable needs to be set for a file.
+        \begin{listing}[H]
+            \begin{centering}
+                \begin{minted}{latex}
+                    \providecommand{\toplevel}{../..}
+                    \providecommand{\importPath}{\toplevel/Shared/Imports}
+                    \providecommand{\assetPath}{\toplevel/Assets}
+                    \providecommand{\sharedPath}{\toplevel/Shared}
+
+                    \documentclass[hidelinks, float=false, crop=false]{standalone}
+
+                    \input{\importPath/preamble}
+                    \input{\importPath/glossary}
+                    \input{\importPath/symbols}
+                \end{minted}
+                \caption{Manually solving the pathing issue}
+                \label{lst:bibliography}
+            \end{centering}
+        \end{listing}
+
+    \section{input Command}
+        \mintinline{latex}{\input{you-file.tex}} is the basic form of importing. Requires no external packages, but also doesn't do anything fancy.
+        Grabs the file and drops it in-place.
+        \begin{itemize}
+            \item Reusing your preambles (without copying and pasting)
+            \item Reusing glossaries
+        \end{itemize}
+    \section{import Package}
+        Can aid with pathing, because it separated out the file from its path and so can find files imported from subimports following their source directory.
+    \section{standalone Package}
+        The major limitation of the import and input commands is that if they're being use with files you'd like to compile separately (for testing, or for any other reason) having multiple preambles will create break your files.
+        The standalone package is a sophisticated tool that solves this by (optionally) ignoring the preambles of any files you're pulling in (or by combining preambles).
+        This brings us closer to our modularized document because it means TiKz figures can be written separately, compiled, tested and all the rest without having to compile your entire document every time.
+        As an added bonus, it introduces the \mintinline{latex}{\includestandalone[\width=0.5\textwidth]{your-tikz-image}} which as shown, allows you to scale TiKz figures as though the were regular images.
+        Very handy.
+        It also allows you to break your report into multiple chapters.
+        \begin{itemize}
+            \item Breaking your document into modular parts
+            \item TikZ Images
+        \end{itemize}
+        \subsection{A Useful Additional Command}
+            When working with a modularized document, it is often desireable to compile it with glossaries or bibliographies added at the end.
+            Of course you can't just add the commands \mintinline{latex}{\printbibliography} because then you would have duplicate bibliographies printed in the super file.
+            My preferred approach to solving this is through the use of boolean flags.
+            Listing \ref{lst:conditionalBibsForSubFiles}, gives the code to be added to the preamble that creates a command to conditionally input a bibliography if the boolean flag \mintinline{latex}{standaloneFlag} is set to \mintinline{latex}{true}.
+            \begin{listing}[H]
+                \begin{centering}
+                    \begin{minted}{latex}
+                        % For using the standalone package
+                        \newboolean{standaloneFlag}
+                        \setboolean{standaloneFlag}{true}
+                        % Command to conditionally typeset a bibliography.
+                        \newcommand{\standaloneBib}{%%
+                        \ifthenelse{\boolean{standaloneFlag}}%%
+                        {\printbibliography[heading=bibintoc]
+                                \printglossary[type=symbols]
+                                \printglossary[type=acronymtype]
+                        \printglossary[type=main]}{}}
+                    \end{minted}
+                    \caption{Conditionally typeset bibliography and glossaries}
+                    \label{lst:conditionalBibsForSubFiles}
+                \end{centering}
+            \end{listing}
+            In the subfiles, now you can issue the command \mintinline{latex}{\standaloneBib} to have the bibliography and glossaries printed if you in the subfile.
+            In the super file then, issue the command \mintinline{latex}{\setboolean{standaloneFlag}{false}} after loading the preamble, to have all instances of \mintinline{latex}{standaloneBib} blocked, and then use the normal commands to have the bibliography and glossaries typset where you want them.
+
+
+    \section{catchfilebetweentags Package}
+        \subsection{catchfilebetweentags}
+            This handy package allows you to store a bunch of different things (say for example, equations) and pull them in to your document. This is really nice because it makes your document's code more easily read. It also makes it that you can reuse the equations in another place, say for example an associated presentations.
+
+            You can use it for anything from equations,
 
     \section{Vector and Raster Graphics}
         Did you ever notice that when you zoom in on the letters in a PDF file, they never pixelate?
